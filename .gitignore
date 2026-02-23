@@ -19,6 +19,13 @@ staticfiles/
 # Environment Variables
 .env
 
+# Coverage
+.coverage
+htmlcov/
+
+# Pytest
+.pytest_cache/
+
 # IDEs
 .vscode/
 .idea/
