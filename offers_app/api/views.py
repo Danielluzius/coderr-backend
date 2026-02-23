@@ -1,5 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from offers_app.models import Offer, OfferDetail
@@ -11,10 +12,19 @@ from .serializers import (OfferCreateSerializer, OfferDetailSerializer,
                           OfferUpdateSerializer)
 
 
+class OfferPagination(PageNumberPagination):
+    """Pagination for the offer list endpoint."""
+
+    page_size = 6
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+
+
 class OfferListCreateView(generics.ListCreateAPIView):
     """Lists all offers or creates a new one."""
 
     queryset = Offer.objects.all()
+    pagination_class = OfferPagination
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = OfferFilter
     search_fields = ['title', 'description']

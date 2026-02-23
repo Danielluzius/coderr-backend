@@ -54,7 +54,7 @@ class OfferListSerializer(serializers.ModelSerializer):
 class OfferRetrieveSerializer(serializers.ModelSerializer):
     """Serializer for the offer detail endpoint."""
 
-    details = OfferDetailSerializer(many=True, read_only=True)
+    details = OfferDetailUrlSerializer(many=True, read_only=True)
     min_price = serializers.SerializerMethodField()
     min_delivery_time = serializers.SerializerMethodField()
 

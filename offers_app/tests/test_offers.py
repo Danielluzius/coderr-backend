@@ -53,7 +53,8 @@ class OfferListTests(APITestCase):
     def test_filter_by_creator_id_returns_200(self):
         response = self.client.get(self.url, {'creator_id': self.business_user.pk})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        for result in response.data:
+        results = response.data.get('results', response.data)
+        for result in results:
             self.assertEqual(result['user'], self.business_user.pk)
 
     def test_filter_by_min_price_returns_200(self):
