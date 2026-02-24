@@ -9,7 +9,9 @@
 
 </div>
 
-Coderr is a freelance marketplace platform where **business users** can offer services and **customers** can browse, order and review them. This repository contains the Django REST Framework backend.
+Coderr is a freelance marketplace platform where **business users** can offer services and **customers** can browse, order and review them.
+
+This repository contains the **Django REST Framework backend API**. It is designed to work together with the [coderr-frontend](https://github.com/Danielluzius/coderr-frontend) – the matching HTML/CSS/JS frontend.
 
 ---
 
@@ -154,9 +156,9 @@ python manage.py migrate
 
 ---
 
-### 6. Load demo data
+### 6. (Optional) Load demo data
 
-This populates the database with users, offers and reviews so the frontend works immediately:
+This populates the database with demo users, offers and reviews. Without this step the API works fine, but the frontend will show an empty state.
 
 ```bash
 python manage.py create_demo_data
@@ -172,6 +174,8 @@ python manage.py create_demo_data
 | lisa     | asdasd24 | customer |
 
 > The command is safe to run multiple times – it will not create duplicate data.
+
+> **Note:** To see the full application, you also need the frontend running. See [Related Projects](#related-projects).
 
 ---
 
@@ -602,6 +606,12 @@ Editable fields: `rating`, `description`
 **Status Codes:** `200` OK
 
 </details>
+
+---
+
+## Related Projects
+
+- **Frontend:** [coderr-frontend](https://github.com/Danielluzius/coderr-frontend) – The matching HTML/CSS/JS frontend for this API.
 
 ---
 
