@@ -115,9 +115,10 @@ pytest --cov
 
 ### Authentication
 
-#### `POST /api/registration/`
+<details>
+<summary><code>POST /api/registration/</code> – Create a new user account</summary>
 
-Creates a new user account.
+**Permissions:** None required
 
 **Request Body:**
 
@@ -144,11 +145,12 @@ Creates a new user account.
 
 **Status Codes:** `201` Created · `400` Bad Request
 
----
+</details>
 
-#### `POST /api/login/`
+<details>
+<summary><code>POST /api/login/</code> – Authenticate and receive a token</summary>
 
-Authenticates a user and returns an auth token.
+**Permissions:** None required
 
 **Request Body:**
 
@@ -172,24 +174,26 @@ Authenticates a user and returns an auth token.
 
 **Status Codes:** `200` OK · `400` Bad Request
 
+</details>
+
 ---
 
 ### Profiles
 
-#### `GET /api/profile/{pk}/`
+<details>
+<summary><code>GET /api/profile/{pk}/</code> – Get a user profile</summary>
 
-Returns the full profile of a user.
+**Permissions:** Authenticated
 
-**Permissions:** Authenticated  
 **Status Codes:** `200` OK · `401` Unauthorized · `404` Not Found
 
----
+</details>
 
-#### `PATCH /api/profile/{pk}/`
+<details>
+<summary><code>PATCH /api/profile/{pk}/</code> – Update own profile</summary>
 
-Updates profile fields of the authenticated user.
+**Permissions:** Owner only
 
-**Permissions:** Owner only  
 **Request Body** (all fields optional):
 
 ```json
@@ -207,31 +211,34 @@ Updates profile fields of the authenticated user.
 
 **Status Codes:** `200` OK · `401` Unauthorized · `403` Forbidden · `404` Not Found
 
----
+</details>
 
-#### `GET /api/profiles/business/`
+<details>
+<summary><code>GET /api/profiles/business/</code> – List all business profiles</summary>
 
-Returns a list of all business user profiles.
+**Permissions:** Authenticated
 
-**Permissions:** Authenticated  
 **Status Codes:** `200` OK · `401` Unauthorized
 
----
+</details>
 
-#### `GET /api/profiles/customer/`
+<details>
+<summary><code>GET /api/profiles/customer/</code> – List all customer profiles</summary>
 
-Returns a list of all customer profiles.
+**Permissions:** Authenticated
 
-**Permissions:** Authenticated  
 **Status Codes:** `200` OK · `401` Unauthorized
+
+</details>
 
 ---
 
 ### Offers
 
-#### `GET /api/offers/`
+<details>
+<summary><code>GET /api/offers/</code> – List offers (paginated)</summary>
 
-Returns a paginated list of offers.
+**Permissions:** None required
 
 **Query Parameters:**
 
@@ -244,16 +251,16 @@ Returns a paginated list of offers.
 | `search`            | string  | Searches `title` and `description` |
 | `page_size`         | integer | Results per page                   |
 
-**Permissions:** None required  
 **Status Codes:** `200` OK · `400` Bad Request
 
----
+</details>
 
-#### `POST /api/offers/`
-
-Creates a new offer. Must include exactly 3 details (basic, standard, premium).
+<details>
+<summary><code>POST /api/offers/</code> – Create a new offer</summary>
 
 **Permissions:** Business users only
+
+Must include exactly 3 details (`basic`, `standard`, `premium`).
 
 **Request Body:**
 
@@ -292,58 +299,63 @@ Creates a new offer. Must include exactly 3 details (basic, standard, premium).
 
 **Status Codes:** `201` Created · `400` Bad Request · `401` Unauthorized · `403` Forbidden
 
----
+</details>
 
-#### `GET /api/offers/{id}/`
+<details>
+<summary><code>GET /api/offers/{id}/</code> – Get a specific offer</summary>
 
-Returns the details of a specific offer.
+**Permissions:** Authenticated
 
-**Permissions:** Authenticated  
 **Status Codes:** `200` OK · `401` Unauthorized · `404` Not Found
 
----
+</details>
 
-#### `PATCH /api/offers/{id}/`
+<details>
+<summary><code>PATCH /api/offers/{id}/</code> – Update an offer</summary>
 
-Updates fields of a specific offer. Details are matched by `offer_type`.
+**Permissions:** Owner only
 
-**Permissions:** Owner only  
+Details are matched by `offer_type`. Only provided fields are updated.
+
 **Status Codes:** `200` OK · `400` Bad Request · `401` Unauthorized · `403` Forbidden · `404` Not Found
 
----
+</details>
 
-#### `DELETE /api/offers/{id}/`
+<details>
+<summary><code>DELETE /api/offers/{id}/</code> – Delete an offer</summary>
 
-Deletes a specific offer.
+**Permissions:** Owner only
 
-**Permissions:** Owner only  
 **Status Codes:** `204` No Content · `401` Unauthorized · `403` Forbidden · `404` Not Found
 
----
+</details>
 
-#### `GET /api/offerdetails/{id}/`
+<details>
+<summary><code>GET /api/offerdetails/{id}/</code> – Get a single offer detail</summary>
 
-Returns a single offer detail object.
+**Permissions:** Authenticated
 
-**Permissions:** Authenticated  
 **Status Codes:** `200` OK · `401` Unauthorized · `404` Not Found
+
+</details>
 
 ---
 
 ### Orders
 
-#### `GET /api/orders/`
+<details>
+<summary><code>GET /api/orders/</code> – List orders for the current user</summary>
 
-Returns all orders where the authenticated user is either the customer or the business user.
+**Permissions:** Authenticated
 
-**Permissions:** Authenticated  
+Returns orders where the authenticated user is either the customer or the business user.
+
 **Status Codes:** `200` OK · `401` Unauthorized
 
----
+</details>
 
-#### `POST /api/orders/`
-
-Creates a new order based on an offer detail.
+<details>
+<summary><code>POST /api/orders/</code> – Create a new order</summary>
 
 **Permissions:** Customer users only
 
@@ -355,11 +367,10 @@ Creates a new order based on an offer detail.
 
 **Status Codes:** `201` Created · `400` Bad Request · `401` Unauthorized · `403` Forbidden · `404` Not Found
 
----
+</details>
 
-#### `PATCH /api/orders/{id}/`
-
-Updates the status of an order.
+<details>
+<summary><code>PATCH /api/orders/{id}/</code> – Update order status</summary>
 
 **Permissions:** Business user of the order only
 
@@ -373,42 +384,47 @@ Allowed values: `in_progress`, `completed`, `cancelled`
 
 **Status Codes:** `200` OK · `400` Bad Request · `401` Unauthorized · `403` Forbidden · `404` Not Found
 
----
+</details>
 
-#### `DELETE /api/orders/{id}/`
+<details>
+<summary><code>DELETE /api/orders/{id}/</code> – Delete an order</summary>
 
-Deletes an order.
+**Permissions:** Admin (staff) only
 
-**Permissions:** Admin (staff) only  
 **Status Codes:** `204` No Content · `401` Unauthorized · `403` Forbidden · `404` Not Found
 
----
+</details>
 
-#### `GET /api/order-count/{business_user_id}/`
+<details>
+<summary><code>GET /api/order-count/{business_user_id}/</code> – Count in-progress orders</summary>
 
-Returns the number of in-progress orders for a business user.
+**Permissions:** Authenticated
 
-**Permissions:** Authenticated  
-**Response:** `{ "order_count": 5 }`  
+**Response:** `{ "order_count": 5 }`
+
 **Status Codes:** `200` OK · `401` Unauthorized · `404` Not Found
 
----
+</details>
 
-#### `GET /api/completed-order-count/{business_user_id}/`
+<details>
+<summary><code>GET /api/completed-order-count/{business_user_id}/</code> – Count completed orders</summary>
 
-Returns the number of completed orders for a business user.
+**Permissions:** Authenticated
 
-**Permissions:** Authenticated  
-**Response:** `{ "completed_order_count": 10 }`  
+**Response:** `{ "completed_order_count": 10 }`
+
 **Status Codes:** `200` OK · `401` Unauthorized · `404` Not Found
+
+</details>
 
 ---
 
 ### Reviews
 
-#### `GET /api/reviews/`
+<details>
+<summary><code>GET /api/reviews/</code> – List all reviews</summary>
 
-Returns a list of all reviews, with optional filtering and ordering.
+**Permissions:** Authenticated
 
 **Query Parameters:**
 
@@ -418,16 +434,14 @@ Returns a list of all reviews, with optional filtering and ordering.
 | `reviewer_id`      | integer | Filter by reviewer       |
 | `ordering`         | string  | `updated_at` or `rating` |
 
-**Permissions:** Authenticated  
 **Status Codes:** `200` OK · `401` Unauthorized
 
----
+</details>
 
-#### `POST /api/reviews/`
+<details>
+<summary><code>POST /api/reviews/</code> – Create a review</summary>
 
-Creates a new review. One review per business user per customer.
-
-**Permissions:** Customer users only
+**Permissions:** Customer users only. One review per business user.
 
 **Request Body:**
 
@@ -441,31 +455,34 @@ Creates a new review. One review per business user per customer.
 
 **Status Codes:** `201` Created · `400` Bad Request · `401` Unauthorized · `403` Forbidden
 
----
+</details>
 
-#### `PATCH /api/reviews/{id}/`
+<details>
+<summary><code>PATCH /api/reviews/{id}/</code> – Update a review</summary>
 
-Updates `rating` and/or `description` of an existing review.
+**Permissions:** Review author only
 
-**Permissions:** Review author only  
+Editable fields: `rating`, `description`
+
 **Status Codes:** `200` OK · `400` Bad Request · `401` Unauthorized · `403` Forbidden · `404` Not Found
 
----
+</details>
 
-#### `DELETE /api/reviews/{id}/`
+<details>
+<summary><code>DELETE /api/reviews/{id}/</code> – Delete a review</summary>
 
-Deletes a review.
+**Permissions:** Review author only
 
-**Permissions:** Review author only  
 **Status Codes:** `204` No Content · `401` Unauthorized · `403` Forbidden · `404` Not Found
+
+</details>
 
 ---
 
 ### Platform Info
 
-#### `GET /api/base-info/`
-
-Returns aggregated platform statistics.
+<details>
+<summary><code>GET /api/base-info/</code> – Platform statistics</summary>
 
 **Permissions:** None required
 
@@ -481,3 +498,5 @@ Returns aggregated platform statistics.
 ```
 
 **Status Codes:** `200` OK
+
+</details>
