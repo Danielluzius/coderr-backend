@@ -1,9 +1,13 @@
 # Coderr – Backend API
 
+<div align="center">
+
 ![Python](https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-6.0-092E20?logo=django&logoColor=white)
 ![DRF](https://img.shields.io/badge/DRF-3.16-red)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
+
+</div>
 
 Coderr is a freelance marketplace platform where **business users** can offer services and **customers** can browse, order and review them. This repository contains the Django REST Framework backend.
 
@@ -21,24 +25,66 @@ Coderr is a freelance marketplace platform where **business users** can offer se
 
 ## Setup
 
+### Prerequisites
+
+Before you start, make sure the following are installed on your machine:
+
+- **Python 3.10+** → [python.org/downloads](https://www.python.org/downloads/)
+- **Git** → [git-scm.com](https://git-scm.com/)
+
+Verify your installation by running:
+
+```bash
+python --version
+git --version
+```
+
+Both commands should print a version number. If you see an error, install the missing tool first.
+
+---
+
 ### 1. Clone the repository
+
+Open a terminal, navigate to the folder where you want to save the project, then run:
 
 ```bash
 git clone <repository-url>
-cd <repository-name>
 ```
 
-### 2. Create and activate a virtual environment
+Afterwards navigate into the **backend** folder – all following commands must be run from here:
+
+```bash
+cd <repository-name>/backend
+```
+
+> **Tip:** You can confirm you are in the right folder when you see `manage.py` listed after running `ls` (macOS/Linux) or `dir` (Windows).
+
+---
+
+### 2. Create a virtual environment
+
+A virtual environment keeps the project's dependencies isolated from the rest of your system.
 
 ```bash
 python -m venv .venv
+```
 
-# Windows
+Then **activate** it:
+
+```bash
+# Windows (PowerShell)
 .venv\Scripts\activate
+
+# Windows (Command Prompt)
+.venv\Scripts\activate.bat
 
 # macOS / Linux
 source .venv/bin/activate
 ```
+
+> **How to tell it worked:** Your terminal prompt should now start with `(.venv)`.
+
+---
 
 ### 3. Install dependencies
 
@@ -46,36 +92,71 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+This installs Django, Django REST Framework and all other required packages.
+
+---
+
 ### 4. Create the environment file
 
-Create a `.env` file in the `backend/` directory:
+A `.env.example` file is included in the repository. Copy it to create your own `.env`:
+
+**Windows (PowerShell):**
+
+```powershell
+Copy-Item .env.example .env
+```
+
+**macOS / Linux:**
+
+```bash
+cp .env.example .env
+```
+
+Open the newly created `.env` with any text editor. It looks like this:
 
 ```env
 SECRET_KEY=your-secret-key-here
 DEBUG=True
 ```
 
-> Generate a secret key by running Python interactively:
->
-> ```bash
-> python
-> ```
->
-> ```python
-> import secrets
-> print(secrets.token_urlsafe(50))
-> exit()
-> ```
+Now replace `your-secret-key-here` with a real secret key. To generate one, run Python interactively:
+
+```bash
+python
+```
+
+Then inside the Python shell:
+
+```python
+import secrets
+print(secrets.token_urlsafe(50))
+exit()
+```
+
+Copy the printed string and paste it as the value for `SECRET_KEY` in your `.env` file. The result should look something like:
+
+```env
+SECRET_KEY=3xAmPl3K3y_abc123xyz...
+DEBUG=True
+```
+
+---
 
 ### 5. Run migrations
+
+This creates the database tables:
 
 ```bash
 python manage.py migrate
 ```
 
-### 6. Create demo data
+> If you see an error like `No module named django`, make sure your virtual environment is activated (step 2).
 
-Populates the database with demo users, offers and reviews so the frontend works out of the box:
+---
+
+### 6. Load demo data
+
+This populates the database with users, offers and reviews so the frontend works immediately:
 
 ```bash
 python manage.py create_demo_data
@@ -90,6 +171,10 @@ python manage.py create_demo_data
 | andrey   | asdasd   | customer |
 | lisa     | asdasd24 | customer |
 
+> The command is safe to run multiple times – it will not create duplicate data.
+
+---
+
 ### 7. Start the development server
 
 ```bash
@@ -98,13 +183,19 @@ python manage.py runserver
 
 The API is now available at `http://127.0.0.1:8000/api/`.
 
-### 8. (Optional) Create a superuser for the admin panel
+Leave this terminal running while you work. Stop the server at any time with `Ctrl + C`.
+
+---
+
+### 8. (Optional) Create an admin account
+
+If you want access to the Django admin panel:
 
 ```bash
 python manage.py createsuperuser
 ```
 
-Admin panel: `http://127.0.0.1:8000/admin/`
+Follow the prompts to set a username and password. Then open `http://127.0.0.1:8000/admin/` in your browser.
 
 ---
 
