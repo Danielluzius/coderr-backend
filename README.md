@@ -1,5 +1,10 @@
 # Coderr – Backend API
 
+![Python](https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-6.0-092E20?logo=django&logoColor=white)
+![DRF](https://img.shields.io/badge/DRF-3.16-red)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
 Coderr is a freelance marketplace platform where **business users** can offer services and **customers** can browse, order and review them. This repository contains the Django REST Framework backend.
 
 ---
@@ -50,10 +55,16 @@ SECRET_KEY=your-secret-key-here
 DEBUG=True
 ```
 
-> Generate a secret key with:
+> Generate a secret key by running Python interactively:
 >
 > ```bash
-> python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+> python
+> ```
+>
+> ```python
+> import secrets
+> print(secrets.token_urlsafe(50))
+> exit()
 > ```
 
 ### 5. Run migrations
@@ -500,3 +511,9 @@ Editable fields: `rating`, `description`
 **Status Codes:** `200` OK
 
 </details>
+
+---
+
+## License
+
+MIT
