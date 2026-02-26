@@ -2,7 +2,6 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
 from reviews_app.models import Review
-
 from .permissions import IsCustomerUser, IsOwnerOfReview
 from .serializers import ReviewSerializer
 

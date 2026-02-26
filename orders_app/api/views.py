@@ -5,7 +5,6 @@ from rest_framework.views import APIView
 
 from orders_app.models import Order
 from profiles_app.models import UserProfile
-
 from .permissions import IsAdminUser, IsBusinessUserOfOrder, IsCustomerUser
 from .serializers import OrderCreateSerializer, OrderSerializer
 

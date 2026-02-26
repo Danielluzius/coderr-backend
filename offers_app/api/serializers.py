@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from offers_app.models import Offer, OfferDetail
 
 
@@ -104,6 +105,12 @@ class OfferUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
         fields = ['id', 'title', 'image', 'description', 'details']
+
+    def validate_details(self, value):
+        for detail in value:
+            if 'offer_type' not in detail:
+                raise serializers.ValidationError('Each detail must include "offer_type".')
+        return value
 
     def update(self, instance, validated_data):
         details_data = validated_data.pop('details', [])

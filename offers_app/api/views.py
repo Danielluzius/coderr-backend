@@ -4,7 +4,6 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from offers_app.models import Offer, OfferDetail
-
 from .filters import OfferFilter
 from .permissions import IsBusinessUser, IsOwnerOfOffer
 from .serializers import (OfferCreateSerializer, OfferDetailSerializer,
@@ -52,9 +51,9 @@ class OfferRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     http_method_names = ['get', 'patch', 'delete']
 
     def get_permissions(self):
-        if self.request.method == 'GET':
-            return [IsAuthenticatedOrReadOnly()]
-        return [IsAuthenticated(), IsOwnerOfOffer()]
+        if self.request.method in ('PATCH', 'DELETE'):
+            return [IsAuthenticated(), IsOwnerOfOffer()]
+        return [IsAuthenticated()]
 
     def get_serializer_class(self):
         if self.request.method == 'PATCH':
