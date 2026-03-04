@@ -38,7 +38,7 @@ class Command(BaseCommand):
             last_name='Müller',
         )
         kevin_profile, _ = UserProfile.objects.get_or_create(user=kevin, defaults={'type': 'business'})
-        kevin_profile.file = copy_image('landingpage/person_1.png', 'profile_pictures', 'kevin.png')
+        kevin_profile.file = copy_image('landingpage/person_4.png', 'profile_pictures', 'kevin.png')
         kevin_profile.location = 'Berlin'
         kevin_profile.tel = '+49 30 123456'
         kevin_profile.description = 'Ich bin ein erfahrener Grafikdesigner mit über 10 Jahren Berufserfahrung.'
@@ -72,7 +72,7 @@ class Command(BaseCommand):
             last_name='Petrov',
         )
         andrey_profile, _ = UserProfile.objects.get_or_create(user=andrey, defaults={'type': 'customer'})
-        andrey_profile.file = copy_image('landingpage/person_3.png', 'profile_pictures', 'andrey.png')
+        andrey_profile.file = copy_image('landingpage/person_1.png', 'profile_pictures', 'andrey.png')
         andrey_profile.type = 'customer'
         andrey_profile.save()
         self._log_created('Customer-User andrey', andrey_created)
@@ -85,7 +85,7 @@ class Command(BaseCommand):
             last_name='Weber',
         )
         lisa_profile, _ = UserProfile.objects.get_or_create(user=lisa, defaults={'type': 'customer'})
-        lisa_profile.file = copy_image('landingpage/person_4.png', 'profile_pictures', 'lisa.png')
+        lisa_profile.file = copy_image('landingpage/person_3.png', 'profile_pictures', 'lisa.png')
         lisa_profile.type = 'customer'
         lisa_profile.save()
         self._log_created('Customer-User lisa', lisa_created)
