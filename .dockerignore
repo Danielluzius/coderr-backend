@@ -1,0 +1,29 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Database (mounted via volume)
+db.sqlite3
+
+# Environment variables (passed via env_file, not baked into the image)
+.env
+
+# Git
+.git/
+.gitignore
+
+# Tests & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Dev tools
+.vscode/
+*.md
