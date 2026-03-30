@@ -17,12 +17,20 @@ Dieses Repository enthält die **Django REST Framework Backend-API**. Sie ist da
 
 ---
 
+## Live Demo
+
+- 🌐 **Frontend:** https://coderr.danielluzius.dev
+- 🔌 **API:** https://api.danielluzius.dev/api/
+
+---
+
 ## Tech Stack
 
 - **Python** 3.13
 - **Django** 6.0
 - **Django REST Framework** 3.16
 - **SQLite** (Entwicklung)
+- **Gunicorn** 25.3.0 (Produktions-WSGI-Server)
 - **django-cors-headers**, **django-filter**, **python-decouple**
 
 ---
@@ -55,10 +63,10 @@ Beide Befehle sollten eine Versionsnummer ausgeben. Falls eine Fehlermeldung ers
 git clone <repository-url>
 ```
 
-Wechsle danach in den **backend**-Ordner – alle folgenden Befehle müssen von hier ausgeführt werden:
+Wechsle danach in den Projektordner – alle folgenden Befehle müssen von hier ausgeführt werden:
 
 ```bash
-cd <repository-name>/backend
+cd <repository-name>
 ```
 
 > **Tipp:** Du bist im richtigen Ordner, wenn du `manage.py` nach dem Ausführen von `ls` (macOS/Linux) bzw. `dir` (Windows) siehst.

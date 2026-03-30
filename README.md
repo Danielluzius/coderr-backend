@@ -17,12 +17,20 @@ This repository contains the **Django REST Framework backend API**. It is design
 
 ---
 
+## Live Demo
+
+- 🌐 **Frontend:** https://coderr.danielluzius.dev
+- 🔌 **API:** https://api.danielluzius.dev/api/
+
+---
+
 ## Tech Stack
 
 - **Python** 3.13
 - **Django** 6.0
 - **Django REST Framework** 3.16
 - **SQLite** (development)
+- **Gunicorn** 25.3.0 (production WSGI server)
 - **django-cors-headers**, **django-filter**, **python-decouple**
 
 ---
@@ -55,10 +63,10 @@ Open a terminal, navigate to the folder where you want to save the project, then
 git clone <repository-url>
 ```
 
-Afterwards navigate into the **backend** folder – all following commands must be run from here:
+Afterwards navigate into the project folder – all following commands must be run from here:
 
 ```bash
-cd <repository-name>/backend
+cd <repository-name>
 ```
 
 > **Tip:** You can confirm you are in the right folder when you see `manage.py` listed after running `ls` (macOS/Linux) or `dir` (Windows).
