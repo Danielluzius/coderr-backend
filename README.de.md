@@ -20,7 +20,7 @@ Dieses Repository enthält die **Django REST Framework Backend-API**. Sie ist da
 ## Live Demo
 
 - 🌐 **Frontend:** https://coderr.danielluzius.dev
-- 🔌 **API:** https://api.danielluzius.dev/api/
+- 🔌 **API:** https://coderr-api.danielluzius.dev/api/
 
 ---
 
